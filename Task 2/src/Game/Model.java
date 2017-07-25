@@ -1,4 +1,4 @@
-/**
+package Game; /**
  * Created by Roman on 21.07.2017.
  */
 import java.util.Random;

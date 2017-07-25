@@ -1,3 +1,7 @@
+package Game;
+
+import Game.Controller;
+
 /**
  * Created by Roman on 20.07.2017.
  */

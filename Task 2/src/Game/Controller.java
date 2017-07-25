@@ -1,4 +1,4 @@
-/**
+package Game; /**
  * Created by Roman on 20.07.2017.
  */
 import java.util.Scanner;
@@ -7,12 +7,14 @@ public class Controller {
     Model model;
     View view;
     // Game initial range
-    int gameMinNumber = 0;
-    int gameMaxNumber = 100;
+    public int gameMinNumber = 0;
+    public int gameMaxNumber = 100;
 
     public Controller(Model model, View view) {
         this.model = model;
         this.view = view;
+        this.gameMinNumber = gameMinNumber;
+        this.gameMaxNumber = gameMaxNumber;
     }
     private String userStirngInput() {
         Scanner sc = new Scanner(System.in);
@@ -23,10 +25,10 @@ public class Controller {
         }
         return sc.next();
     }
-    private boolean verifyInput(String input) {
+    public boolean verifyInput(String input) {
         try {
             int intInput = Integer.parseInt(input);
-            if (intInput >= gameMinNumber || intInput <= gameMaxNumber) {
+            if (intInput >= gameMinNumber && intInput <= gameMaxNumber) {
                 return true;
             }
             else{
@@ -38,7 +40,7 @@ public class Controller {
         }
         return false;
     }
-    private void gameTry(int intInput) {
+    public void gameTry(int intInput) {
         String result = model.gameTry(intInput);
         if (result.equals("equal")) {
             view.printMessage(view.GAME_WIN);
@@ -63,6 +65,11 @@ public class Controller {
             if (verifyInput(input)) {
                 int intInput = Integer.parseInt(input);
                 gameTry(intInput);
+            }
+            else {
+                view.printMessage(view.WRONG_INPUT);
+                view.printTargetNumberRange(gameMinNumber,gameMaxNumber);
+                continue;
             }
         }
     }
